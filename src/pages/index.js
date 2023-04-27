@@ -2,9 +2,11 @@ import Head from "next/head";
 import Header from "../../components/Header";
 import Banner from "../../components/Banner";
 import { getLocalData } from "../../lib/SmallCardsData";
+import { getCardsData } from "../../lib/MediumCardsData";
 import SmallCard from "../../components/SmallCards";
+import MediumCard from "../../components/MediumCards";
 
-export default function Home({ localData }) {
+export default function Home({ localData, cardsData }) {
   return (
     <>
       <Head>
@@ -31,6 +33,14 @@ export default function Home({ localData }) {
             ))}
           </div>
         </section>
+        <section>
+          <h2 className="text-4xl font-semibold py-8">Live enywhere</h2>
+          <div className="flex space-x-3 overflow-x-scroll scrollbar-hide p-3 -ml-3">
+            {cardsData?.map(({ img, title }) => (
+              <MediumCard key={img} img={img} title={title} />
+            ))}
+          </div>
+        </section>
       </main>
     </>
   );
@@ -38,8 +48,9 @@ export default function Home({ localData }) {
 
 export async function getStaticProps() {
   const localData = await getLocalData();
+  const cardsData = await getCardsData();
 
   return {
-    props: { localData },
+    props: { localData, cardsData },
   };
 }
