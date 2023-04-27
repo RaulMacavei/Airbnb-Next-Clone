@@ -1,8 +1,10 @@
 import Head from "next/head";
 import Header from "../../components/Header";
 import Banner from "../../components/Banner";
+import { getLocalData } from "../../lib/SmallCardsData";
+import SmallCard from "../../components/SmallCards";
 
-export default function Home() {
+export default function Home({ localData }) {
   return (
     <>
       <Head>
@@ -19,6 +21,25 @@ export default function Home() {
         {/* Banner Component */}
         <Banner />
       </header>
+
+      <main className="max-w-7xl mx-auto px-8 sm:px-16">
+        <section className="pt-6">
+          <h2 className="text-4xl font-semibold pb-5">Explore Europe</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {localData?.map(({ img, location }) => (
+              <SmallCard key={img} img={img} location={location} />
+            ))}
+          </div>
+        </section>
+      </main>
     </>
   );
+}
+
+export async function getStaticProps() {
+  const localData = await getLocalData();
+
+  return {
+    props: { localData },
+  };
 }
