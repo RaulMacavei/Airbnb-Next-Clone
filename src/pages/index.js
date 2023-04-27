@@ -5,6 +5,7 @@ import { getLocalData } from "../../lib/SmallCardsData";
 import { getCardsData } from "../../lib/MediumCardsData";
 import SmallCard from "../../components/SmallCards";
 import MediumCard from "../../components/MediumCards";
+import LargeCard from "../../components/LargeCard";
 
 export default function Home({ localData, cardsData }) {
   return (
@@ -40,6 +41,14 @@ export default function Home({ localData, cardsData }) {
               <MediumCard key={img} img={img} title={title} />
             ))}
           </div>
+        </section>
+        <section>
+          <LargeCard
+            img="https://i.imgur.com/9GARzhJ.jpg"
+            title="The Greatest Outdoors"
+            description="Wishlists curated by Airbnb"
+            buttonText="Get Inspired"
+          />
         </section>
       </main>
     </>
