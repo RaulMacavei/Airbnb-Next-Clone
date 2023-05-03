@@ -8,6 +8,7 @@ function Banner() {
         src="https://i.imgur.com/hct4RtG.jpg"
         alt="banner image"
         fill
+        priority
         className="object-cover"
       />
       <div className="absolute top-1/2 w-full text-center">
